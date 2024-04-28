@@ -1,5 +1,6 @@
 import random
 import numpy as np
+from utils import draw_grid
 
 class GridWorld():
     def __init__(self):
@@ -19,7 +20,7 @@ class GridWorld():
 
         reward = -1 # 보상은 항상 -1로 고정
         done = self.is_done()
-        return (self.x, self.y), reward, done
+        return self.get_state(), reward, done
 
     def move_right(self):
         self.y += 1  
@@ -98,6 +99,9 @@ def main():
             
     for row in data:
         print(row)
+        
+    formatted_data=[[format(num, ".1f") for num in row] for row in data]
+    draw_grid(formatted_data)
 
 if __name__ == '__main__':
     main()
